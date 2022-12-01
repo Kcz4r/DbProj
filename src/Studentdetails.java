@@ -683,7 +683,7 @@ public class Studentdetails extends javax.swing.JFrame {
         {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/bookdb", "root", "Kenarnold1");
-            PreparedStatement sts = conn.prepareStatement("Select LID,Sid,FullName,MobileNumber,Email,Address,Balance from studentlist where LID=?");
+            PreparedStatement sts = conn.prepareStatement("Select * from studentlist where LID=?");
             sts.setInt(1, stud);
             ResultSet rs =sts.executeQuery();
             if(rs.next())
