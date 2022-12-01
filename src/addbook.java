@@ -630,8 +630,19 @@ public class addbook extends javax.swing.JFrame {
             try {
                 Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/bookdb", "root", "Kenarnold1");
                 PreparedStatement sts;
-                
-                
+                String stmts = "INSERT INTO thebooks (Title, Author, Date_Published, Category, Genre, Book_Languange, availability) VALUES" +
+                     "(\""+ bname +"\",\""+ bauthor+"\",\""+ datepub+"\",\""+ categ+"\",\""+ genre+"\",\""+ lang+"\", '1')";
+                sts = conn.prepareStatement(stmts);
+                conn.prepareStatement(stmts);
+                int count = sts.executeUpdate();
+                if (count > 0) 
+                {
+                    JOptionPane.showMessageDialog(null, "Successfully Added");
+                } 
+                else 
+                {
+                    JOptionPane.showMessageDialog(null, "JOptionPane.showMessageDialog(null, \"Try again\\nPlease double check the data\",\"Alert\",JOptionPane.WARNING_MESSAGE);");
+                }
                 
             } catch (SQLException ex) {
                 Logger.getLogger(addbook.class.getName()).log(Level.SEVERE, null, ex);
