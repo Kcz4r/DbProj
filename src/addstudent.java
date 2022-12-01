@@ -540,6 +540,12 @@ public class addstudent extends javax.swing.JFrame {
        String snum = SNum.getText();
        String smail = SMail.getText();
        String sadd = SAdd.getText();
+       if("".equals(sid)||"".equals(sname)||"".equals(snum)||"".equals(smail)||"".equals(sadd))
+       {
+           JOptionPane.showMessageDialog(null, "Try again\nPlease double check the data","Alert",JOptionPane.WARNING_MESSAGE);
+       }
+       else
+       {
         try
     {
         Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/bookdb", "root", "Kenarnold1");
@@ -561,6 +567,7 @@ public class addstudent extends javax.swing.JFrame {
     }   catch (SQLException ex) {
             Logger.getLogger(addstudent.class.getName()).log(Level.SEVERE, null, ex);
         }
+       }
     }//GEN-LAST:event_AddButtActionPerformed
 
     /**
