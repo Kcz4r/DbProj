@@ -65,7 +65,7 @@ public class Login extends javax.swing.JFrame {
 
         SignupButton.setBackground(new java.awt.Color(153, 153, 153));
         SignupButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        SignupButton.setText("Sign Up");
+        SignupButton.setText("Log In");
         SignupButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 SignupButtonActionPerformed(evt);
@@ -182,7 +182,7 @@ public class Login extends javax.swing.JFrame {
         }
         else
         {
-            JOptionPane.showMessageDialog(null,  "Wrong username or password \nPlease double check.");
+            JOptionPane.showMessageDialog(null,  "Wrong username or password \nPlease double check.","Alert",JOptionPane.WARNING_MESSAGE);
         }
         
         
