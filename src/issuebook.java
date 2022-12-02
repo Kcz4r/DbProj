@@ -570,7 +570,7 @@ public class issuebook extends javax.swing.JFrame {
         {
            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/bookdb", "root", "Kenarnold1");
             PreparedStatement sts;
-            String stms="UPDATE bookdb.thebooks SET availability = 0, Holder =" + t1.getText() + ", ExpectedReturnDate =" +t3.getText()+ " WHERE (`BID` ="+t2.getText()+")";
+            String stms="UPDATE bookdb.thebooks SET availability = 0, Holder =" + t1.getText() + ", ExpectedReturnDate ='" +t3.getText()+ "' WHERE BID ="+t2.getText();
             sts = conn.prepareStatement(stms);
             int count = sts.executeUpdate();
                 if (count > 0) 
