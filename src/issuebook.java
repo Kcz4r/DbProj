@@ -590,7 +590,7 @@ public class issuebook extends javax.swing.JFrame {
 
     private void t3KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_t3KeyPressed
         if(t3.getForeground()!=Color.BLACK){
-            if(t3.getText().equals("genre1,genre2")){
+            if(t3.getText().equals("YYYY-MM-DD")){
 	t3.setText("");
             }
         }
