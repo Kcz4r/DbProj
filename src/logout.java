@@ -1,3 +1,6 @@
+
+import javax.swing.JOptionPane;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -478,7 +481,12 @@ public class logout extends javax.swing.JFrame {
 
     private void logoutyesbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutyesbuttonActionPerformed
         // TODO add your handling code here:
-        dispose();
+        if (JOptionPane.showConfirmDialog(null, "Are you sure?", "WARNING",
+        JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) 
+        {
+            dispose();
+        } 
+        
     }//GEN-LAST:event_logoutyesbuttonActionPerformed
 
     private void q8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_q8ActionPerformed
