@@ -381,9 +381,16 @@ public class addbook extends javax.swing.JFrame {
         jLabel26.setText("DatePublished:");
 
         t3.setFont(new java.awt.Font("Serif", 0, 12)); // NOI18N
+        t3.setForeground(new java.awt.Color(153, 153, 153));
+        t3.setText("YYYY-MM-DD");
         t3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 t3ActionPerformed(evt);
+            }
+        });
+        t3.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                t3KeyPressed(evt);
             }
         });
 
@@ -653,6 +660,15 @@ public class addbook extends javax.swing.JFrame {
     private void t1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_t1ActionPerformed
+
+    private void t3KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_t3KeyPressed
+        if(t3.getForeground()!=Color.BLACK){
+            if(t3.getText().equals("YYYY-MM-DD")){
+	t3.setText("");
+            }
+        }
+        t3.setForeground(Color.BLACK);       
+    }//GEN-LAST:event_t3KeyPressed
 
     /**
      * @param args the command line arguments

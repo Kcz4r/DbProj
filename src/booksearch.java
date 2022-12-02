@@ -403,7 +403,7 @@ public class booksearch extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID", "Title", "Author", "Date Published", "Category", "Genre/Subject", "Language", "Availability"
+                "ID", "Title", "Author", "Date Published", "Category", "Genre/Subject", "Language", "Availability", "Expected Return"
             }
         ));
         jScrollPane1.setViewportView(table1);
@@ -635,7 +635,7 @@ public class booksearch extends javax.swing.JFrame {
         }
         else if("Genre".equals(t2.getSelectedItem().toString()))
         {
-                        try {
+            try {
             Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/bookdb", "root", "Kenarnold1");
             PreparedStatement sts;
             String stms= "SELECT * from thebooks where Genre LIKE '%"+t1.getText()+"%'";
@@ -652,8 +652,8 @@ public class booksearch extends javax.swing.JFrame {
                 String genre = rs.getString("Genre");
                 String lang = rs.getString("Book_Languange");
                 String avail = rs.getString("availability");
-
-                String tdata[] = {id,title,author,datepub,category,genre,lang,avail};
+                String ret = String.valueOf(rs.getDate("ExpectedReturnDate"));
+                String tdata[] = {id,title,author,datepub,category,genre,lang,avail,ret};
                 DefaultTableModel tbl = (DefaultTableModel)table1.getModel();
 
                 tbl.addRow(tdata);
