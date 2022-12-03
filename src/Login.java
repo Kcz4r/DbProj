@@ -80,7 +80,7 @@ public class Login extends javax.swing.JFrame {
 
         jLabel7.setText("Forget password?");
 
-        jLabel9.setIcon(new javax.swing.ImageIcon("P:\\Java\\Library\\Library\\src\\main\\java\\logo3.png")); // NOI18N
+        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/logo3.png"))); // NOI18N
         jLabel9.setText("jLabel9");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
