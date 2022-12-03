@@ -1,3 +1,12 @@
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -9,11 +18,10 @@
  */
 public class penalty extends javax.swing.JFrame {
 
-    /**
-     * Creates new form penalty
-     */
+    static int topay = 0;
     public penalty() {
         initComponents();
+
     }
 
     /**
@@ -47,17 +55,17 @@ public class penalty extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jPanel30 = new javax.swing.JPanel();
-        jTextField7 = new javax.swing.JTextField();
+        t1 = new javax.swing.JTextField();
         jLabel22 = new javax.swing.JLabel();
         jLabel23 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        t4 = new javax.swing.JComboBox<>();
         jLabel24 = new javax.swing.JLabel();
-        jTextField8 = new javax.swing.JTextField();
+        t3 = new javax.swing.JTextField();
         jLabel25 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        t5 = new javax.swing.JComboBox<>();
         jButton1 = new javax.swing.JButton();
         jLabel26 = new javax.swing.JLabel();
-        jTextField9 = new javax.swing.JTextField();
+        t2 = new javax.swing.JTextField();
         jButton8 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -356,10 +364,10 @@ public class penalty extends javax.swing.JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        jTextField7.setFont(new java.awt.Font("Serif", 0, 24)); // NOI18N
-        jTextField7.addActionListener(new java.awt.event.ActionListener() {
+        t1.setFont(new java.awt.Font("Serif", 0, 24)); // NOI18N
+        t1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField7ActionPerformed(evt);
+                t1ActionPerformed(evt);
             }
         });
 
@@ -369,39 +377,44 @@ public class penalty extends javax.swing.JFrame {
         jLabel23.setFont(new java.awt.Font("Serif", 0, 24)); // NOI18N
         jLabel23.setText("Library ID:");
 
-        jComboBox1.setBackground(new java.awt.Color(210, 158, 58));
-        jComboBox1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Late Return", "Dirtied Pages/Cover", "Spilled on Pages/Cover", "Written something in the book", "Punit", " " }));
-        jComboBox1.setMaximumSize(new java.awt.Dimension(380, 38));
+        t4.setBackground(new java.awt.Color(210, 158, 58));
+        t4.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        t4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Late Return", "Dirtied Pages/Cover", "Spilled on Pages/Cover", "Written something in the book", "Torn Pages/Cover", "RIP in Peace" }));
+        t4.setMaximumSize(new java.awt.Dimension(380, 38));
 
         jLabel24.setFont(new java.awt.Font("Serif", 0, 24)); // NOI18N
         jLabel24.setText("Days of Late:");
 
-        jTextField8.setFont(new java.awt.Font("Serif", 0, 24)); // NOI18N
-        jTextField8.addActionListener(new java.awt.event.ActionListener() {
+        t3.setFont(new java.awt.Font("Serif", 0, 24)); // NOI18N
+        t3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField8ActionPerformed(evt);
+                t3ActionPerformed(evt);
             }
         });
 
         jLabel25.setFont(new java.awt.Font("Serif", 0, 24)); // NOI18N
         jLabel25.setText("Penalty Reason:");
 
-        jComboBox2.setBackground(new java.awt.Color(210, 158, 58));
-        jComboBox2.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Dirtied Pages/Cover", "Spilled on Pages/Cover", "Written something in the book", "Punit", " " }));
-        jComboBox2.setMaximumSize(new java.awt.Dimension(380, 38));
+        t5.setBackground(new java.awt.Color(210, 158, 58));
+        t5.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        t5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", "Dirtied Pages/Cover", "Spilled on Pages/Cover", "Written something in the book", "Torn Pages/Cover", "RIP in Peace" }));
+        t5.setMaximumSize(new java.awt.Dimension(380, 38));
 
         jButton1.setBackground(new java.awt.Color(210, 158, 58));
         jButton1.setText("Record");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jLabel26.setFont(new java.awt.Font("Serif", 0, 24)); // NOI18N
-        jLabel26.setText("Damaged Book ID:");
+        jLabel26.setText("Book ID:");
 
-        jTextField9.setFont(new java.awt.Font("Serif", 0, 24)); // NOI18N
-        jTextField9.addActionListener(new java.awt.event.ActionListener() {
+        t2.setFont(new java.awt.Font("Serif", 0, 24)); // NOI18N
+        t2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField9ActionPerformed(evt);
+                t2ActionPerformed(evt);
             }
         });
 
@@ -440,16 +453,16 @@ public class penalty extends javax.swing.JFrame {
                                             .addComponent(jLabel24, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                            .addComponent(t4, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(t3, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(t5, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGap(0, 0, Short.MAX_VALUE)
-                                        .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(t2, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(t1, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(96, 96, 96)
@@ -472,24 +485,24 @@ public class penalty extends javax.swing.JFrame {
                         .addComponent(jLabel11)
                         .addGap(47, 47, 47)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(t1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel23))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(t2, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(t4, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel24)
-                            .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(t3, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(t5, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -553,29 +566,103 @@ public class penalty extends javax.swing.JFrame {
     }//GEN-LAST:event_q6ActionPerformed
 
     private void q8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_q8ActionPerformed
-       penalty penfram= new penalty();
-       penfram.show();
-       dispose();        // TODO add your handling code here:
-    }//GEN-LAST:event_q8ActionPerformed
-
-    private void jTextField7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField7ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField7ActionPerformed
-
-    private void q7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_q7ActionPerformed
         logout outfram = new logout();
         outfram.show();
-        dispose();        // TODO add your handling code here:
+        dispose();               // TODO add your handling code here:
+    }//GEN-LAST:event_q8ActionPerformed
+
+    private void t1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_t1ActionPerformed
+
+    private void q7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_q7ActionPerformed
+               // TODO add your handling code here:
         
     }//GEN-LAST:event_q7ActionPerformed
 
-    private void jTextField8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField8ActionPerformed
+    private void t3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t3ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField8ActionPerformed
+    }//GEN-LAST:event_t3ActionPerformed
 
-    private void jTextField9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField9ActionPerformed
+    private void t2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t2ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField9ActionPerformed
+    }//GEN-LAST:event_t2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+                int q = Integer.parseInt(t3.getText());
+        
+        if("Late Return".equals(t4.getSelectedItem().toString()))
+        {
+            topay = 5 * q;
+        }
+        else if("Dirtied Pages/Cover".equals(t4.getSelectedItem().toString()))
+        {
+            topay = 30;
+        }
+        else if("Spilled on Pages/Cover".equals(t4.getSelectedItem().toString()))
+        {
+            topay = 50;
+        }
+        else if("Written something in the book".equals(t4.getSelectedItem().toString()))
+        {
+            topay = 30;
+        }
+        else if("Torn Pages/Cover".equals(t4.getSelectedItem().toString()))
+        {
+            topay = 50;
+        }
+        else if("RIP in Peace".equals(t4.getSelectedItem().toString()))
+        {
+            topay = 500;
+        }
+        
+        
+        
+        if("Dirtied Pages/Cover".equals(t5.getSelectedItem().toString()))
+        {
+            topay += 30;
+        }
+        else if("Spilled on Pages/Cover".equals(t5.getSelectedItem().toString()))
+        {
+            topay += 50;
+        }
+        else if("Written something in the book".equals(t5.getSelectedItem().toString()))
+        {
+            topay += 30;
+        }
+        else if("Torn Pages/Cover".equals(t5.getSelectedItem().toString()))
+        {
+            topay += 50;
+        }
+        else if("RIP in Peace".equals(t5.getSelectedItem().toString()))
+        {
+            topay += 500;
+        }
+        if("".equals(t1.getText())||"".equals(t2.getText()))
+        {
+            JOptionPane.showMessageDialog(null, "Try again\nPlease double check the data","Alert",JOptionPane.WARNING_MESSAGE);
+        }
+        else
+        {
+            try {
+                Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/bookdb", "root", "Kenarnold1");
+                PreparedStatement sts;
+                String stms="UPDATE bookdb.studentlist SET Balance ="+topay+" WHERE (LID ="+t1.getText()+")";
+                sts = conn.prepareStatement(stms);
+                int count = sts.executeUpdate();
+                if (count > 0) 
+                {
+                    JOptionPane.showMessageDialog(null, "Successfully Recorded");
+                } 
+                else 
+                {
+                    JOptionPane.showMessageDialog(null, "Try again\nPlease double check the data","Alert",JOptionPane.WARNING_MESSAGE);
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(penalty.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -615,8 +702,6 @@ public class penalty extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton8;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
@@ -636,9 +721,6 @@ public class penalty extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
-    private javax.swing.JTextField jTextField9;
     private javax.swing.JButton q1;
     private javax.swing.JButton q2;
     private javax.swing.JButton q3;
@@ -647,5 +729,10 @@ public class penalty extends javax.swing.JFrame {
     private javax.swing.JButton q6;
     private javax.swing.JButton q7;
     private javax.swing.JButton q8;
+    private javax.swing.JTextField t1;
+    private javax.swing.JTextField t2;
+    private javax.swing.JTextField t3;
+    private javax.swing.JComboBox<String> t4;
+    private javax.swing.JComboBox<String> t5;
     // End of variables declaration//GEN-END:variables
 }
