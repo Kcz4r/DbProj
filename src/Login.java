@@ -1,4 +1,10 @@
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /*
@@ -171,13 +177,26 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_t2ActionPerformed
 
     private void SignupButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SignupButtonActionPerformed
+        
+        
         String user = t1.getText();
         String pass = t2.getText();
         if("admin".equals(user) && "admin".equals(pass))
         {
             Homepage hp = new Homepage();
             hp.show();
-
+            try 
+            {
+                Connection con1 = DriverManager.getConnection("jdbc:mysql://localhost:3306/bookdb", "root", "Kenarnold1");
+                PreparedStatement sts;
+                String stms="INSERT INTO bookdb.logs (Category, Details, DateTime) VALUES ('LogIn', 'Admin is logged in', now())";
+                sts = con1.prepareStatement(stms);
+                sts.execute();
+            } 
+            catch (SQLException ex) 
+            {
+                Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+            }
             dispose();
         }
         else

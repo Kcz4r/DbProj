@@ -668,7 +668,20 @@ public class penalty extends javax.swing.JFrame {
                 int count = sts.executeUpdate();
                 if (count > 0) 
                 {
-                    JOptionPane.showMessageDialog(null, "Successfully Recorded");
+                    JOptionPane.showMessageDialog(null, "Successfully Recorded\nHas to pay(PHP):"+topay);
+                    try 
+                        {
+                            int w = Integer.parseInt(t1.getText());
+                            Connection con1 = DriverManager.getConnection("jdbc:mysql://localhost:3306/bookdb", "root", "Kenarnold1");
+                            PreparedStatement stss;
+                            String stmss="INSERT INTO bookdb.logs (Category, Details, DateTime) VALUES ('Penalty', 'LID:"+w+" Amout:"+topay+"', now())";
+                            stss = con1.prepareStatement(stmss);
+                            stss.execute();
+                        } 
+                        catch (SQLException ex) 
+                        {
+                            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+                        }
                 } 
                 else 
                 {

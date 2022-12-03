@@ -555,6 +555,18 @@ public class addstudent extends javax.swing.JFrame {
         int count = sts.executeUpdate();
       if (count > 0) {
             JOptionPane.showMessageDialog(null, "Successfully Added");
+            try 
+            {
+                Connection con1 = DriverManager.getConnection("jdbc:mysql://localhost:3306/bookdb", "root", "Kenarnold1");
+                PreparedStatement stss;
+                String stmss="INSERT INTO bookdb.logs (Category, Details, DateTime) VALUES ('AddedStudent', 'Added Student', now())";
+                stss = con1.prepareStatement(stmss);
+                stss.execute();
+            } 
+            catch (SQLException ex) 
+            {
+                Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+            }
         } 
       else {
             JOptionPane.showMessageDialog(null, "JOptionPane.showMessageDialog(null, \"Try again\\nPlease double check the data\",\"Alert\",JOptionPane.WARNING_MESSAGE);");

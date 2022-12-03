@@ -576,6 +576,20 @@ public class issuebook extends javax.swing.JFrame {
                 if (count > 0) 
                 {
                     JOptionPane.showMessageDialog(null, "Successfully Recorded");
+                    try 
+            {
+                int q = Integer.parseInt(t1.getText());
+                int w = Integer.parseInt(t2.getText());
+                Connection con1 = DriverManager.getConnection("jdbc:mysql://localhost:3306/bookdb", "root", "Kenarnold1");
+                PreparedStatement stss;
+                String stmss="INSERT INTO bookdb.logs (Category, Details, DateTime) VALUES ('IssueBook', 'LID:"+q+" issued BID:"+w+"', now())";
+                stss = con1.prepareStatement(stmss);
+                stss.execute();
+            } 
+            catch (SQLException ex) 
+            {
+                Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+            }
                 } 
                 else 
                 {

@@ -1,4 +1,10 @@
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /*
@@ -484,6 +490,18 @@ public class logout extends javax.swing.JFrame {
         if (JOptionPane.showConfirmDialog(null, "Are you sure?", "WARNING",
         JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) 
         {
+            try 
+            {
+                Connection con1 = DriverManager.getConnection("jdbc:mysql://localhost:3306/bookdb", "root", "Kenarnold1");
+                PreparedStatement sts;
+                String stms="INSERT INTO bookdb.logs (Category, Details, DateTime) VALUES ('LogOut', 'Admin is logged out', now())";
+                sts = con1.prepareStatement(stms);
+                sts.execute();
+            } 
+            catch (SQLException ex) 
+            {
+                Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+            }
             dispose();
         } 
         
