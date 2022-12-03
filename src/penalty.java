@@ -16,8 +16,9 @@ import javax.swing.JOptionPane;
  *
  * @author pc
  */
-public class penalty extends javax.swing.JFrame {
 
+public class penalty extends javax.swing.JFrame {
+    
     static int topay = 0;
     public penalty() {
         initComponents();
@@ -63,10 +64,10 @@ public class penalty extends javax.swing.JFrame {
         t3 = new javax.swing.JTextField();
         jLabel25 = new javax.swing.JLabel();
         t5 = new javax.swing.JComboBox<>();
-        jButton1 = new javax.swing.JButton();
+        RecButt = new javax.swing.JButton();
         jLabel26 = new javax.swing.JLabel();
         t2 = new javax.swing.JTextField();
-        jButton8 = new javax.swing.JButton();
+        PayButt = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -400,11 +401,11 @@ public class penalty extends javax.swing.JFrame {
         t5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", "Dirtied Pages/Cover", "Spilled on Pages/Cover", "Written something in the book", "Torn Pages/Cover", "RIP in Peace" }));
         t5.setMaximumSize(new java.awt.Dimension(380, 38));
 
-        jButton1.setBackground(new java.awt.Color(210, 158, 58));
-        jButton1.setText("Record");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        RecButt.setBackground(new java.awt.Color(210, 158, 58));
+        RecButt.setText("Record");
+        RecButt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                RecButtActionPerformed(evt);
             }
         });
 
@@ -418,8 +419,13 @@ public class penalty extends javax.swing.JFrame {
             }
         });
 
-        jButton8.setBackground(new java.awt.Color(210, 158, 58));
-        jButton8.setText("Pay");
+        PayButt.setBackground(new java.awt.Color(210, 158, 58));
+        PayButt.setText("Pay");
+        PayButt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PayButtActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -466,9 +472,9 @@ public class penalty extends javax.swing.JFrame {
                                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(96, 96, 96)
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(RecButt, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(PayButt, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(108, 108, 108))))))
         );
         jPanel1Layout.setVerticalGroup(
@@ -505,8 +511,8 @@ public class penalty extends javax.swing.JFrame {
                             .addComponent(t5, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(RecButt, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(PayButt, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(15, 15, 15))
                     .addComponent(jPanel30, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -588,8 +594,16 @@ public class penalty extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_t2ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-                int q = Integer.parseInt(t3.getText());
+    private void RecButtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RecButtActionPerformed
+        int q;
+        if("".equals(t3.getText()))
+        {
+            q=0;
+        }
+        else
+        {
+            q=Integer.parseInt(t3.getText());
+        }
         
         if("Late Return".equals(t4.getSelectedItem().toString()))
         {
@@ -638,6 +652,8 @@ public class penalty extends javax.swing.JFrame {
         {
             topay += 500;
         }
+        
+        
         if("".equals(t1.getText())||"".equals(t2.getText()))
         {
             JOptionPane.showMessageDialog(null, "Try again\nPlease double check the data","Alert",JOptionPane.WARNING_MESSAGE);
@@ -662,7 +678,69 @@ public class penalty extends javax.swing.JFrame {
                 Logger.getLogger(penalty.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_RecButtActionPerformed
+
+    private void PayButtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PayButtActionPerformed
+        int q;
+        if("".equals(t3.getText()))
+        {
+            q=0;
+        }
+        else
+        {
+            q=Integer.parseInt(t3.getText());
+        }
+        
+        if("Late Return".equals(t4.getSelectedItem().toString()))
+        {
+            topay = 5 * q;
+        }
+        else if("Dirtied Pages/Cover".equals(t4.getSelectedItem().toString()))
+        {
+            topay = 30;
+        }
+        else if("Spilled on Pages/Cover".equals(t4.getSelectedItem().toString()))
+        {
+            topay = 50;
+        }
+        else if("Written something in the book".equals(t4.getSelectedItem().toString()))
+        {
+            topay = 30;
+        }
+        else if("Torn Pages/Cover".equals(t4.getSelectedItem().toString()))
+        {
+            topay = 50;
+        }
+        else if("RIP in Peace".equals(t4.getSelectedItem().toString()))
+        {
+            topay = 500;
+        }
+        
+        
+        
+        if("Dirtied Pages/Cover".equals(t5.getSelectedItem().toString()))
+        {
+            topay += 30;
+        }
+        else if("Spilled on Pages/Cover".equals(t5.getSelectedItem().toString()))
+        {
+            topay += 50;
+        }
+        else if("Written something in the book".equals(t5.getSelectedItem().toString()))
+        {
+            topay += 30;
+        }
+        else if("Torn Pages/Cover".equals(t5.getSelectedItem().toString()))
+        {
+            topay += 50;
+        }
+        else if("RIP in Peace".equals(t5.getSelectedItem().toString()))
+        {
+            topay += 500;
+        }    
+        
+        JOptionPane.showMessageDialog(null, "Member has to pay (PHP): " + topay);
+    }//GEN-LAST:event_PayButtActionPerformed
 
     /**
      * @param args the command line arguments
@@ -700,8 +778,8 @@ public class penalty extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton8;
+    private javax.swing.JButton PayButt;
+    private javax.swing.JButton RecButt;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
