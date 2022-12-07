@@ -262,7 +262,6 @@ public class Return extends javax.swing.JFrame {
 
         q6.setBackground(new java.awt.Color(210, 158, 58));
         q6.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
-        q6.setForeground(new java.awt.Color(255, 255, 255));
         q6.setText("Return Book ");
         q6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

@@ -530,9 +530,9 @@ public class issuebook extends javax.swing.JFrame {
     }//GEN-LAST:event_q6ActionPerformed
 
     private void q8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_q8ActionPerformed
-       penalty penfram= new penalty();
-       penfram.show();
-       dispose();        // TODO add your handling code here:
+        logout outfram = new logout();
+        outfram.show();
+        dispose();               // TODO add your handling code here:
     }//GEN-LAST:event_q8ActionPerformed
 
     private void t3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t3ActionPerformed
@@ -554,9 +554,9 @@ public class issuebook extends javax.swing.JFrame {
     }//GEN-LAST:event_q5ActionPerformed
 
     private void q7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_q7ActionPerformed
-        logout outfram = new logout();
-        outfram.show();
-        dispose();        // TODO add your handling code here:
+       penalty penfram= new penalty();
+       penfram.show();
+       dispose();   // TODO add your handling code here:
     }//GEN-LAST:event_q7ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
