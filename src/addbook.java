@@ -415,7 +415,7 @@ public class addbook extends javax.swing.JFrame {
         jLabel28.setFont(new java.awt.Font("Serif", 0, 24)); // NOI18N
         jLabel28.setText("Category:");
 
-        t4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Educational" }));
+        t4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Educational", "Encyclopedia", "Children Story", "CookBook", "Dictionary", "Novel", "Story" }));
 
         jLabel29.setFont(new java.awt.Font("Serif", 0, 24)); // NOI18N
         jLabel29.setText("Genre:");
