@@ -8,4 +8,4 @@ Step 4:You must change the password in every line "Connection conn......"
 For database.
 
 Step 1:open MySQL WorkBench
-Step 1:Server>Data Import and locate the dump file from extracted files
+Step 2:Server>Data Import and locate the dump file from extracted files///Make sure you save it on "bookdb" database name and same table name as the file
